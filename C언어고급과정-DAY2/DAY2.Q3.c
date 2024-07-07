@@ -1,3 +1,5 @@
+//문제 3: 키보드로 양수를 입력받아서 16진수로 변환해서 출력하시오
+
 #include <stdio.h>
 
 int main(void) {
