@@ -26,12 +26,12 @@ int main(void) {
 // 입력된 값을 2진수로 변환하여 출력하는 함수
 void printBinary(unsigned char value) {
     for (int i = 7; i >= 0; i--) { // 8비트를 역순으로 순회
-        printf("%d", (value >> i) & 1); // 각 비트를 추출하여 출력
+        printf("%d", (value >> i) & 1); // 각 비트를 추출하여 출력(>> 이게 이진 표현을 오른쪽으로 움직임)
     }
     printf("\n"); // 줄바꿈
 }
 
 // 입력된 값의 비트를 오른쪽으로 1회 이동시키는 함수
 unsigned char rotateRight(unsigned char value) {
-    return (value >> 1) | (value << 7); // 오른쪽으로 1비트 이동 후, 최상위 비트를 최하위 비트로 이동
+    return (value >> 1) | (value << 7); // 오른쪽으로 1비트 이동 후, 최상위 비트를 최하위 비트로 이동( | <- 이건 비트용 OR)
 }
