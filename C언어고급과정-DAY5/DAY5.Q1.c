@@ -67,3 +67,58 @@ int main(void) {
 이 프로그램은 큰 숫자의 팩토리얼을 계산하는 데 적합하며, 특히 숫자가 커질수록 일반적인 데이터 타입으로는 처리할 수 없는 경우 유용합니다.
 팩토리얼 계산의 기본 원리와 자리 올림 처리의 중요성을 이해하는 데 도움을 줍니다.
 */
+//수정 !!
+#include <stdio.h>
+
+#define MAX 160
+
+void factorial(int n) {
+    int result[MAX] = {1};
+    int result_size = 1;
+    int carry, prod;
+
+    for (int i = 2; i <= n; i++) {
+        carry = 0;
+        for (int j = 0; j < result_size || carry; j++) {
+            if (j == result_size) {
+                result_size++;
+            }
+            prod = result[j] * i + carry;
+            result[j] = prod % 10;
+            carry = prod / 10;
+        }
+    }
+    
+/*
+변경 사항:
+통합된 for 루프: for 루프 조건을 j < result_size || carry로 수정하여 
+자리 올림이 있을 때까지 루프가 지속.
+
+배열 크기 증가: 
+if (j == result_size) 조건을 추가하여 새로운 자리가 필요할 경우 result_size를 증가시키고,
+이로 인해 carry가 배열의 범위를 초과하여도 처리. 이제 carry 처리가 for 루프 내에서 직접 이루어지며, 
+자리 올림과 계산이 통합되었다.
+*/
+
+/*    while (carry) {
+        result[result_size++] = carry % 10;
+        carry /= 10;
+    }
+*/
+
+    printf("%d! = ", n);
+    for (int i = result_size - 1; i >= 0; i--) {
+        printf("%d", result[i]);
+    }
+    printf("\n");
+}
+
+int main(void) {
+    int n;
+    printf("0 ~ 100 입력: ");
+    if (scanf("%d", &n) != 1 || n < 0 || n > 100) {
+        printf("0 ~ 100을 입력하시오\n");
+    } else {
+        factorial(n);
+    }
+}
