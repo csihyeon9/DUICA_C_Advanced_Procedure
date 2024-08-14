@@ -25,5 +25,3 @@ int main(void){
 
     printf("%s\n", outputFileName);
 }
-
-
